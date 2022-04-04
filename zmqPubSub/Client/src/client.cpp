@@ -51,9 +51,14 @@ public:
             socket.setsockopt(ZMQ_SUBSCRIBE, top.data(), top.size());
         }
         zmq::message_t topic;
-        socket.recv(topic);
         zmq::message_t message;
-        socket.recv(message);
+        try {
+            socket.recv(topic);
+            socket.recv(message);
+        }
+        catch (zmq::error_t er) {
+            std::cout << "Что-то пошло не так. Ошибка при получении сообщений..." << std::endl;
+        }
 
         printer(message);
     }
@@ -83,7 +88,7 @@ private:
 
 int main()
 {
-    Client cl("5555", topic="students");
+    Client cl("5555", "students");
     cl.start_client();
     return 0;
 }
