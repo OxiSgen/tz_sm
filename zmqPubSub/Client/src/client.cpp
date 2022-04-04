@@ -41,7 +41,7 @@ public:
             socket.connect("tcp://zmq-server-cpp:" + port);
         }
         catch (zmq::error_t er) {
-            std::cout << "Что-то пошло не так. Ошибка при подключении к серверу..." << std::endl;
+            cout << "Что-то пошло не так. Ошибка при подключении к серверу..." << endl;
         };
         data_recieve(zmq_topic);
     }
@@ -57,7 +57,7 @@ public:
             socket.recv(message);
         }
         catch (zmq::error_t er) {
-            std::cout << "Что-то пошло не так. Ошибка при получении сообщений..." << std::endl;
+            cout << "Что-то пошло не так. Ошибка при получении сообщений..." << endl;
         }
 
         printer(message);
