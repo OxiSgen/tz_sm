@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  zmq-server:
+    build: ./Server
+    container_name: zmq-server-cpp
+    image: zmq/zmq-server-cpp
+    hostname: zmq-server-cpp
+    ports:
+     - "5555:5555"
+    volumes:
+     - ./files:/opt/ps/outfile
+    tty: true
+
+  zmq-client:
+    build: ./Client
+    container_name: zmq-client-cpp
+    image: zmq/zmq-client-cpp
+    hostname: zmq-client-cpp
+    tty: true
+
+networks:
+  default:
+    external:
+      name: zmq
