@@ -1,5 +1,4 @@
-# Get the base Ubuntu image from Docker Hub
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 
 RUN apt-get -y update && apt-get install -y
