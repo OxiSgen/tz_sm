@@ -40,11 +40,15 @@ namespace Json
         }
     }
 
-    void file_read(std::vector<Student>& st, std::string FileName) {
+    void file_read(std::vector<Student>& st, std::string file_Name) {
         std::string buffer;
         std::vector<std::string> pv;
 
-        std::ifstream fin(FileName);
+        std::ifstream fin(file_Name);
+        if (!fin.is_open()) {
+            std::cout << "Не удалось найти файл: " << file_Name << std::endl;
+            return;
+        }
         while (std::getline(fin, buffer)) {
             boost::split(pv, buffer, boost::is_any_of(" "));
             try {
